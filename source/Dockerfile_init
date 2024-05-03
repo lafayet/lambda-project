@@ -1,0 +1,9 @@
+ARG USE_VERSION=3.19
+FROM alpine:${USE_VERSION}
+RUN apk update && apk add python3 py3-pip
+WORKDIR /web_app
+COPY . .
+RUN python3 -m venv venv
+RUN source venv/bin/activate && pip3 install -r requirements.txt
+ENTRYPOINT [ "venv/bin/python" ]
+CMD [ "app.py" ]

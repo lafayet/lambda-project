@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKERHUB = credentials("dockerhub-credentials")
+    }
+
+    stages {
+        stage('Checkout git') {
+            steps {
+                git branch: 'main', poll: false, url: 'https://github.com/lafayet/lambda-project.git'
+            }
+        }
+        stage ('Docker build')
+        {
+            steps {
+                dir ('source') {
+                    sh """
+                        docker build -t dmytrokomsheliuk/infinitelambda:latest .
+                    """
+                }
+            }
+        }
+        stage ('Docker push')
+        {
+            steps {
+                sh """
+                    docker login -u $DOCKERHUB_USR -p '$DOCKERHUB_PSW'
+                    docker push dmytrokomsheliuk/infinitelambda:latest
+                """
+            }
+        }
+    }
+}

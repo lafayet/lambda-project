@@ -20,6 +20,6 @@ python3 app.py  # 1. Start the application
 Your tasks are:
 - Containerize the app, push in image to DockerHub +
 - Create yaml files for Kubernetes deployment, try them on minikube +
-- Create a CI/CD pipeline that builds the container and pushes it to DockerHub -> inprogress...
-- Create a separate CI/CD pipeline that creates the required Kubernetes resources with terraform (Jenkins and Kubernetes have to be in the same network)
+- Create a CI/CD pipeline that builds the container and pushes it to DockerHub +
+- Create a separate CI/CD pipeline that creates the required Kubernetes resources with terraform (Jenkins and Kubernetes have to be in the same network) -> inprogress...
 - Extend the first pipeline to also deploy the app to the Kubernetes cluster
